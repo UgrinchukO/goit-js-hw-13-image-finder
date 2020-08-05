@@ -6,14 +6,11 @@ const url = 'https://pixabay.com/api/';
 
 let numberPage = 1;
 
-function fetchPictures(searchQuery) {
-  numberPage += 1;
-  return axios
-    .get(
-      `${url}?image_type=photo&orientation=horizontal&q=${searchQuery}&page=${numberPage}&per_page=12&key=${apiKey}`,
-    )
-    .then(res => res)
-    .catch(toastr.error('Not Found!!!'));
-}
+ function fetchImages(searchQuery, numberPage) {
+  const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${searchQuery}&page=${numberPage}&per_page=12&key=${apiKey}`;
 
-export default fetchPictures;
+  return fetch(url)
+    .then(res => res.json())
+    .catch(error => console.log(error));
+}
+export default fetchImages

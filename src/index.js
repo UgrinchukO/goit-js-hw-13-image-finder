@@ -17,7 +17,7 @@ function searchHandler(event) {
   const form = event.currentTarget;
   searchQuery = form.elements.query.value;
 
-  fetchPictures(searchQuery, numberPage).then(({ hits }) => {
+  fetchPictures(searchQuery, numberPage).then(({hits }) => {
     if (hits.length !== 0) {
       markupRender(hits);
       refs.button.classList.remove('disabled');
@@ -41,7 +41,7 @@ function loadMore() {
   numberPage += 1;
   fetchPictures(searchQuery, numberPage).then(({ hits }) => markupRender(hits));
   window.scrollTo({
-    top: 100,
+    top: document.documentElement.offsetHeight,
     behavior: 'smooth',
   });
 }
